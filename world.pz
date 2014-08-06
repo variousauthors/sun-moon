@@ -1,4 +1,68 @@
 
+( draw a smooth curve that intersects itself at least once, and that )
+( ends where it started. The figure should now have at least two )
+( distinct areas. Colour one of them white and the other black. )
+( Instead of a smooth curve, use right angles. Now you have a level! )
+
+( a simple level demonstrating this technique )
+( If we think about this level in terms of a graph, with each "room" )
+( being a node, and each wall as an edge, then it is a bipartite graph. )
+
+( this level has no moveable blocks )
+
+$##...##P
+#T#...###
+###...###
+...###...
+...###.B.
+###.....+
+
+( this level demonstrates a simple "transfer" )
+( the purple dude can't get to the other purple area )
+( without help )
+
+#####.....
+#$##....+.
+####......
+#####.....
+.....#####
+.....#####
+.B...###T#
+.....####P
+
+( This is a level whose shape cannot be achieved in the way described )
+( above, but whose graph is still bipartite. In this level, purple )
+( will need a "tunnel" to get to the goal )
+
+P#####.....
+#$####.....
+####T#.....
+######.....
+......#####
+......#####
+.B....##...
+......##.+.
+......##...
+
+( here I've nested to bipartite planar graphs )
+
+...##############
+...##############
+...##############
+###..............
+###..............
+###..P#####......
+###..#$####......
+###..####T#......
+###..######......
+###........#####.
+###........#####.
+###...B....#####.
+###........#####.
+###........#####.
+###..............
+
+
 ( there needs to be a "P" somewhere in the level, where a wall would be )
 ( this is how the controls get sent to the different folk )
 
@@ -17,5 +81,6 @@ P####
 #..T.#
 #..###
 P###..
+
 
 
