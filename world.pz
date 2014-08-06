@@ -1,4 +1,13 @@
 
+( there needs to be a "P" somewhere in the level, where a wall would be )
+( this is how the controls get sent to the different folk )
+
+#####
+*#.B#
+..T.#
+##.+#
+P####
+
 ( the original level, based off Stephen Lavelle's sokoban level )
 
 ####.*
