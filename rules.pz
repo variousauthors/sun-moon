@@ -89,6 +89,14 @@ white
 .....
 .....
 
+Target
+white red
+1...1
+.1.1.
+..1..
+.1.1.
+1...1
+
 =======
 LEGEND
 =======
@@ -98,6 +106,9 @@ LEGEND
 T = TInactive and BWall and BFloor
 B = Bottom and BFloor
 P = Player and BWall and BFloor
+
+* = Target and BFloor
+Folk = Top or Bottom
 
 =======
 SOUNDS
@@ -112,6 +123,7 @@ Player
 BFloor, TFloor
 BInactive, TInactive
 Bottom, Top, BWall, TWall
+Target
 
 ======
 RULES
@@ -173,6 +185,8 @@ RULES
 ==============
 WINCONDITIONS
 ==============
+
+All Folk on Target
 
 =======
 LEVELS
