@@ -1,0 +1,179 @@
+title Something
+author arrogant.gamer
+homepage www.arrogantgamer.com
+
+========
+OBJECTS
+========
+
+
+
+Top
+#5D475D
+00000
+00000
+00000
+00000
+00000
+
+TFloor
+#928192
+00000
+00000
+00000
+00000
+00000
+
+TWall
+#341A34
+00000
+00000
+00000
+00000
+00000
+
+Bottom
+#907E6D
+00000
+00000
+00000
+00000
+00000
+
+
+BFloor
+#E1D4C7
+00000
+00000
+00000
+00000
+00000
+
+BWall
+#503C27
+00000
+00000
+00000
+00000
+00000
+
+Background
+white
+.....
+.....
+.....
+.....
+.....
+
+Player
+white
+.....
+.....
+.....
+.....
+.....
+
+TInactive
+white
+.....
+.....
+.....
+.....
+.....
+
+BInactive
+white
+.....
+.....
+.....
+.....
+.....
+
+=======
+LEGEND
+=======
+
+. = BFloor
+# = BWall and BFloor
+T = TInactive and BWall and BFloor
+B = Bottom and BFloor
+P = Player and BWall and BFloor
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Player
+BFloor, TFloor
+BInactive, TInactive
+Bottom, Top, BWall, TWall
+
+======
+RULES
+======
+
+
+( Top leaves a hole in the sky and can only switch back if in that hole )
+( [ action player ] [ Top TBackground ] -> CANCEL )
+
+( when the player presses 'x', switch paradigms )
+
+( mark all the bottom player's stuff )
+[ action player ] [ BWall ] -> [ action player ] [ action BWall ]
+[ action player ] [ BFloor ] -> [ action player ] [ action BFloor ]
+
+( mark all the top player's stuff )
+[ action player ] [ TWall ] -> [ action player ] [ action TWall ]
+[ action player ] [ TFloor ] -> [ action player ] [ action TFloor ]
+
+( prepare to swap active to inactive )
+( if we don't "deactivate" the fellows, then they will get cancelled by walls )
+[ action player ] [ TInactive ] -> [ action player ] [ action TInactive ]
+[ action player ] [ BInactive ] -> [ action player ] [ action BInactive ]
+[ action player ] [ Top ] -> [ action player ] [ action Top ]
+[ action player ] [ Bottom ] -> [ action player ] [ action Bottom ]
+
+( end the action )
+[ action player ] -> [ player ]
+
+
+
+( swap whatever was marked )
+[ action BWall ] -> [ TFloor ]
+[ action TWall ] -> [ BFloor ]
+
+( first swap the hibernating fellows with active fellows )
+[ action TInactive ] -> [ Top TFloor ]
+[ action BInactive ] -> [ Bottom BFloor ]
+[ action Top ] -> [ TInactive TFloor TWall ]
+[ action Bottom ] -> [ BInactive BFloor BWall ]
+
+( then swap the walls in afterwards, so as not to squash folk )
+[ action BFloor ] -> [ TWall TFloor ]
+[ action TFloor ] -> [ BWall BFloor ]
+
+( player controls the current fellow )
+[ > player ] [ BWall ] [ Bottom ] -> [ player ] [ BWall ] [ > Bottom ]
+[ > player ] [ TWall ] [ Top ] -> [ player ] [ TWall ] [ > Top ]
+[ > player ] -> [ player ]
+
+( each kind of fellow can push walls (and the fellows within) )
+
+[ > Bottom | BWall ] -> [ > Bottom | > BWall ]
+[ > Bottom | TInactive ] -> [ > Bottom | > TInactive ]
+
+[ > Top | TWall ] -> [ > Top | > TWall ]
+[ > Top | BInactive ] -> [ > Top | > BInactive ]
+
+==============
+WINCONDITIONS
+==============
+
+=======
+LEVELS
+=======
