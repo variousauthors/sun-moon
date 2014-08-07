@@ -222,14 +222,15 @@ RULES
 [ > Top | BInactive ] -> [ > Top | > BInactive ]
 
 ( all targets need to be covered by the correct folk )
-late [ Top TTarget ] -> [ Top TTarget Token ]
-late [ Bottom BTarget ] -> [ Bottom BTarget Token ]
+
+[ token ] -> []
+
+late [ Top TTarget ] [ BInactive BTarget ] -> win
+late [ TInactive TTarget ] [ Bottom BTarget ] -> win
 
 ==============
 WINCONDITIONS
 ==============
-
-All Target on Token
 
 =======
 LEVELS

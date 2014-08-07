@@ -1,3 +1,17 @@
+
+( this is too easy, but I wish it wasn't. It demonstrates a sokoban )
+( one-way gadget, the three blocks in the middle that must be moved )
+( but also demonstrates how difficult it is to stop a player in this )
+( variant. My design goal is for purple to have to cross the screen )
+( in order to unlock the gadget, but purple seems to be able to unlock it )
+( from the right in any case! Moar thinking! )
+
+P####.#.###$#
+#####.#...###
++B...#.##....
+..##...##...T
+####...##....
+
 ( draw a smooth curve that intersects itself at least once, and that )
 ( ends where it started. The figure should now have at least two )
 ( distinct areas. Colour one of them white and the other black. )
