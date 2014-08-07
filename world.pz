@@ -16,6 +16,15 @@ $##...##P
 ...###.B.
 ###.....+
 
+( there needs to be a "P" somewhere in the level, where a wall would be )
+( this is how the controls get sent to the different folk )
+
+#####
+*#.B#
+..T.#
+##.+#
+P####
+
 ( this level demonstrates a simple "transfer" )
 ( the purple dude can't get to the other purple area )
 ( without help )
@@ -28,6 +37,28 @@ $##...##P
 .....#####
 .B...###T#
 .....####P
+
+
+( the original level, based off Stephen Lavelle's sokoban level )
+
+####.*
+#..#..
+#..###
+##B..#
+#..T.#
+#..###
+P###..
+
+( a more involved level )
+
+#..##..#$
+##.#####.
+#.T..###+
+#.......#
+#.B..###.
+######P#.
+
+( examples with no solution )
 
 ( This is a level whose shape cannot be achieved in the way described )
 ( above, but whose graph is still bipartite. In this level, purple )
@@ -43,7 +74,7 @@ P#####.....
 ......##.+.
 ......##...
 
-( here I've nested to bipartite planar graphs )
+( here I've nested two bipartite planar graphs )
 
 ...##############
 ...##############
@@ -62,21 +93,5 @@ P#####.....
 ###..............
 
 
-( there needs to be a "P" somewhere in the level, where a wall would be )
-( this is how the controls get sent to the different folk )
 
-#####
-*#.B#
-..T.#
-##.+#
-P####
 
-( the original level, based off Stephen Lavelle's sokoban level )
-
-####.*
-#..#..
-#..###
-##B..#
-#..T.#
-#..###
-P###..
