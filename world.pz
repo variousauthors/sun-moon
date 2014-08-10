@@ -1,3 +1,78 @@
+( GOOD LEVELS )
+
+( there needs to be a "P" somewhere in the level, where a wall would be )
+( this is how the controls get sent to the different folk )
+
+#####
+*#.B#
+..T.#
+##.+#
+P####
+
+( this level demonstrates a simple "transfer" )
+( the purple dude can't get to the other purple area )
+( without help )
+
+$##....+
+###.....
+####....
+....####
+....####
+B...##PT
+
+( the original level, based off Stephen Lavelle's sokoban level )
+( it is just "good luck" that this level actually has an interesting )
+( solution. We need to reproduce this "feel" )
+
+####.*
+#..#..
+#..###
+##B..#
+#..T.#
+#+.###
+P###..
+
+( a more involved level )
+( design notes: I started with an impossible situation )
+( then added something to make it possible, then added something )
+( to make it a little harder. It was a lot of back and forth to get )
+( it to this point )
+
+#..##..#$
+##.#####.
+#.T..###+
+#.......#
+#.B..###.
+######P#.
+
+( END GOOD LEVELS )
+
+( I tried to make some levels where you have classic Sokoban parts, )
+( like elbows and locks of various kinds. It turns out they all fall )
+( apart. This is because: )
+
+( once the purple dude is inside a room, if the room is small, then the )
+( purple dude can just explode it. If the room is large, then it won't )
+( work as a lock, elbow, or what have you. )
+
+( still working on discovering "the nature" of interesting puzzles in this space )
+
+( elbow: easily broken )
+
+##B##.....
+##T##.....
+#......*..
+#..##.....
+####P.....
+
+( a lock that would be impossible in Sokoban, but is too easy to solve here )
+
+##B#P
+##T##
+##.*#
+#...#
+#..##
+#####
 
 ( this is too easy, but I wish it wasn't. It demonstrates a sokoban )
 ( one-way gadget, the three blocks in the middle that must be moved )
@@ -12,7 +87,7 @@ P####.#.###$#
 ..##...##...T
 ####...##....
 
-( draw a smooth curve that intersects itself at least once, and that )
+( observation: draw a smooth curve that intersects itself at least once, and that )
 ( ends where it started. The figure should now have at least two )
 ( distinct areas. Colour one of them white and the other black. )
 ( Instead of a smooth curve, use right angles. Now you have a level! )
@@ -29,48 +104,6 @@ $##...##P
 ...###...
 ...###.B.
 ###.....+
-
-( there needs to be a "P" somewhere in the level, where a wall would be )
-( this is how the controls get sent to the different folk )
-
-#####
-*#.B#
-..T.#
-##.+#
-P####
-
-( this level demonstrates a simple "transfer" )
-( the purple dude can't get to the other purple area )
-( without help )
-
-#####.....
-#$##....+.
-####......
-#####.....
-.....#####
-.....#####
-.B...###T#
-.....####P
-
-
-( the original level, based off Stephen Lavelle's sokoban level )
-
-####.*
-#..#..
-#..###
-##B..#
-#..T.#
-#..###
-P###..
-
-( a more involved level )
-
-#..##..#$
-##.#####.
-#.T..###+
-#.......#
-#.B..###.
-######P#.
 
 ( examples with no solution )
 

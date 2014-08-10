@@ -225,6 +225,8 @@ RULES
 
 [ token ] -> []
 
+( this win condiftion won't work if there is just one target )
+
 late [ Top TTarget ] [ BInactive BTarget ] -> win
 late [ TInactive TTarget ] [ Bottom BTarget ] -> win
 
