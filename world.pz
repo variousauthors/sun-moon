@@ -1,5 +1,50 @@
 ( GOOD LEVELS )
 
+( UGH I felt pretty clever about these, but they both contain )
+( rather trivial unintended solutions. It is too easy to just break the )
+( level down, rather than solve it. Maybe that's fun too!? )
+
+( the unintended soultion involves peeling a strip off the left )
+( side of the center area, and building a bridge )
+( alternatively the dark coloured block can just build a tunnel )
+( for the ilght coloured block )
+
+message "check the comments in the source for some design notes"
+
+...#......
+###..#####
+T##..#####
+##.B..####
+.#....####
+###..###.P
+.##.##...+
+
+( a variation on the level, with an unintended solution )
+( which of these two is "more interesting"? It would be )
+( cool to include both, since they are similar but have )
+( quite different solutions... the first requires planning )
+( ahead, and the second requires clever block breaking )
+
+...#......
+###..#####
+T#...#####
+##.B..####
+.#....####
+###..####P
+.##..##..+
+
+( here is a simpler level derived from the previous two levels )
+( maybe this could be interesting if it the purple target was )
+( on the left side... )
+
+##....####
+T#.B..####
+.#....####
+###..####P
+$##..##..+
+
+( TODO compare the levels that "work" )
+
 ( there needs to be a "P" somewhere in the level, where a wall would be )
 ( this is how the controls get sent to the different folk )
 
@@ -138,7 +183,4 @@ P#####.....
 ###........#####.
 ###........#####.
 ###..............
-
-
-
 
