@@ -1,3 +1,226 @@
+title Something
+author arrogant.gamer
+homepage www.arrogantgamer.com
+norepeat_action
+
+========
+OBJECTS
+========
+
+( Purple )
+
+APlayerOn
+#5D475D
+00000
+00000
+00.00
+00000
+00000
+
+APlayerOff
+transparent
+
+ATarget
+#5D475D
+.....
+.....
+..0..
+.....
+.....
+
+AFloor
+#928192
+
+AWall
+#341A34
+
+( Brown )
+
+BPlayerOn
+#907E6D
+00000
+00000
+00.00
+00000
+00000
+
+BPlayerOff
+transparent
+
+BTarget
+#907E6D
+.....
+.....
+..0..
+.....
+.....
+
+BFloor
+#E1D4C7
+
+BWall
+#503C27
+
+( utility objects )
+
+Background
+gray
+
+BLACK
+black
+
+
+=======
+LEGEND
+=======
+
+APlayer = APlayerOn or APlayerOff
+BPlayer = BPlayerOn or BPlayerOff
+
+Player = APlayerOn or BPlayerOn
+PlayerOff = APlayerOff or BPlayerOff
+Floor = AFloor or BFloor
+Wall = AWall or BWall
+Target = ATarget or BTarget
+
+# = BWall
+P = BWall
+T = BWall and APlayerOff
+$ = BWall and ATarget
+
+. = BFloor
+B = BFloor and BPlayerOn
+* = BFloor and ATarget
++ = BFloor and BTarget
+
+X = Black
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Floor
+AWall, APlayer, Black
+BWall, BPlayer, Black
+Target
+
+======
+RULES
+======
+
+( when the player presses 'x', switch paradigms )
+
+[ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
+[ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
+[ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
+[ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
+[ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
+[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
+
+
+( players can push walls, and inactive players within )
+rigid [ > Player | Wall ] -> [ > Player | > Wall ]
++ rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
+
+
+( after walls are moved, ensure either a floor or wall is in every cell )
+late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
+late [ APlayerOn ] [ no Floor no Wall ] -> [ APlayerOn ] [ AFloor ]
+late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
+late [ BPlayerOn ] [ no Floor no Wall ] -> [ BPlayerOn ] [ BFloor ]
+
+
+==============
+WINCONDITIONS
+==============
+
+all APlayer on ATarget
+all BPlayer on BTarget
+
+=======
+LEVELS
+=======
+
+( the staircase is a repeatingn pattern )
+( 
+
+ #
+#
+#
+
+)
+( the first one needs to have that blank corner filled, but then
+  it can be repeated )
+
+
+(
+..BT..
+......
+...BT.
+
+)
+
+............
+............
+....##......
+...BT.......
+....###...XX
+....##......
+.....##.....
+.....##.....
+............
+
+(
+............
+..##........
+.BT.#.......
+..##.#......
+...##.#.....
+....##.#....
+.....##.#...
+
+............
+..##........
+.BT.........
+..#.........
+............
+)
+
+( this one, on ther other hand, has no starting key piece
+............
+..##........
+.BT.##......
+..#.#.##....
+....#.#.##..
+......#.#...
+........#...
+............
+............
+)
+
+...#......
+###..#####
+T#...###$#
+##.B..####
+.#....####
+###..####P
+.##..##..+ ( I like this one better )
+
+$#.+
+##..
+T#.B
+
++.#$
+##.#
+..##
+.#..
+B.#T
+
 ( TODO compare the levels that "work", find out why )
 
 ( there needs to be a "P" somewhere in the level, where a wall would be )

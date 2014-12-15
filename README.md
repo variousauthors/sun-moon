@@ -15,4 +15,17 @@ the puzzlescript editor back into these two files. `world.pz` should always cont
 the ascii maps. This is for ease of editing in VI later on (where I can do block copy,
 instead of having to do line by line copy).
 
+### RULES ###
+
+0. the goal can exist on a tile or in a wall
+
+1. ferrying
+   when one agent pushes a block that is another agent, across a space
+
+2. Arranging the level
+
+3. Digging
+   ferry into a solid object, puts the character inside a wall in order
+   to open the wall
+
 [0]: http://www.puzzlescript.net/editor.html

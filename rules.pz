@@ -1,6 +1,7 @@
 title Something
 author arrogant.gamer
 homepage www.arrogantgamer.com
+norepeat_action
 
 ========
 OBJECTS
@@ -8,7 +9,7 @@ OBJECTS
 
 ( Purple )
 
-Top
+APlayerOn
 #5D475D
 00000
 00000
@@ -16,31 +17,10 @@ Top
 00000
 00000
 
-TFloor
-#928192
-00000
-00000
-00000
-00000
-00000
+APlayerOff
+transparent
 
-TWall
-#341A34
-00000
-00000
-00000
-00000
-00000
-
-TInactive
-white
-.....
-.....
-.....
-.....
-.....
-
-TTarget
+ATarget
 #5D475D
 .....
 .....
@@ -48,17 +28,15 @@ TTarget
 .....
 .....
 
-TTargetInactive
-#5D475D
-.....
-.....
-.....
-.....
-.....
+AFloor
+#928192
+
+AWall
+#341A34
 
 ( Brown )
 
-Bottom
+BPlayerOn
 #907E6D
 00000
 00000
@@ -66,29 +44,8 @@ Bottom
 00000
 00000
 
-BFloor
-#E1D4C7
-00000
-00000
-00000
-00000
-00000
-
-BWall
-#503C27
-00000
-00000
-00000
-00000
-00000
-
-BInactive
-white
-.....
-.....
-.....
-.....
-.....
+BPlayerOff
+transparent
 
 BTarget
 #907E6D
@@ -98,58 +55,45 @@ BTarget
 .....
 .....
 
-BTargetInactive
-#907E6D
-.....
-.....
-.....
-.....
-.....
+BFloor
+#E1D4C7
+
+BWall
+#503C27
 
 ( utility objects )
 
 Background
-white
-.....
-.....
-.....
-.....
-.....
+gray
 
-Player ( provides controls )
-white
-.....
-.....
-.....
-.....
-.....
-
-Token ( marks squares satisfying a condition )
-red
-00000
-00000
-00000
-00000
-00000
+BLACK
+black
 
 
 =======
 LEGEND
 =======
 
+APlayer = APlayerOn or APlayerOff
+BPlayer = BPlayerOn or BPlayerOff
+
+Player = APlayerOn or BPlayerOn
+PlayerOff = APlayerOff or BPlayerOff
+Floor = AFloor or BFloor
+Wall = AWall or BWall
+Target = ATarget or BTarget
+
+# = BWall
+P = BWall
+T = BWall and APlayerOff
+$ = BWall and ATarget
+
 . = BFloor
-# = BWall and BFloor
-T = TInactive and BWall and BFloor
-B = Bottom and BFloor
-P = Player and BWall and BFloor
+B = BFloor and BPlayerOn
+* = BFloor and ATarget
++ = BFloor and BTarget
 
-* = TTarget and BFloor
-$ = TTarget and BWall
-+ = BTarget and BFloor
-
-Folk = Top or Bottom
-
-Target = TTarget or BTarget
+X = Black
 
 =======
 SOUNDS
@@ -160,81 +104,40 @@ COLLISIONLAYERS
 ================
 
 Background
-Player, Token, TTargetInactive, BTargetInactive
-BFloor, TFloor
-BInactive, TInactive
-Bottom, Top, BWall, TWall
-TTarget, BTarget
+Floor
+AWall, APlayer, Black
+BWall, BPlayer, Black
+Target
 
 ======
 RULES
 ======
 
-( SWAPPING )
-
 ( when the player presses 'x', switch paradigms )
 
-( mark all the bottom player's stuff )
-[ action player ] [ BWall ] -> [ action player ] [ action BWall ]
-[ action player ] [ BFloor ] -> [ action player ] [ action BFloor ]
-
-( mark all the top player's stuff )
-[ action player ] [ TWall ] -> [ action player ] [ action TWall ]
-[ action player ] [ TFloor ] -> [ action player ] [ action TFloor ]
-
-( prepare to swap active to inactive )
-( if we don't "deactivate" the fellows, then they will get cancelled by walls )
-[ action player ] [ TInactive ] -> [ action player ] [ action TInactive ]
-[ action player ] [ BInactive ] -> [ action player ] [ action BInactive ]
-[ action player ] [ Top ] -> [ action player ] [ action Top ]
-[ action player ] [ Bottom ] -> [ action player ] [ action Bottom ]
-
-( end the action )
-[ action player ] -> [ player ]
+[ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
+[ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
+[ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
+[ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
+[ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
+[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
 
 
+( players can push walls, and inactive players within )
+rigid [ > Player | Wall ] -> [ > Player | > Wall ]
++ rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
 
-( swap whatever was marked )
-[ action BWall ] -> [ TFloor ]
-[ action TWall ] -> [ BFloor ]
 
-( first swap the hibernating fellows with active fellows )
-[ action TInactive ] -> [ Top TFloor ]
-[ action BInactive ] -> [ Bottom BFloor ]
-[ action Top ] -> [ TInactive TFloor TWall ]
-[ action Bottom ] -> [ BInactive BFloor BWall ]
+( after walls are moved, ensure either a floor or wall is in every cell )
+late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
+late [ APlayerOn ] [ no Floor no Wall ] -> [ APlayerOn ] [ AFloor ]
+late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
+late [ BPlayerOn ] [ no Floor no Wall ] -> [ BPlayerOn ] [ BFloor ]
 
-( then swap the walls in afterwards, so as not to squash folk )
-[ action BFloor ] -> [ TWall TFloor ]
-[ action TFloor ] -> [ BWall BFloor ]
-
-( CONTROLS )
-
-( player controls the current fellow )
-[ > player ] [ BWall ] [ Bottom ] -> [ player ] [ BWall ] [ > Bottom ]
-[ > player ] [ TWall ] [ Top ] -> [ player ] [ TWall ] [ > Top ]
-[ > player ] -> [ player ]
-
-( each kind of fellow can push walls (and the fellows within) )
-[ > Bottom | BWall ] -> [ > Bottom | > BWall ]
-[ > Bottom | TInactive ] -> [ > Bottom | > TInactive ]
-
-[ > Top | TWall ] -> [ > Top | > TWall ]
-[ > Top | BInactive ] -> [ > Top | > BInactive ]
-
-( all targets need to be covered by the correct folk )
-
-[ token ] -> []
-
-( this win condiftion won't work if there is just one target )
-
-late [ Top TTarget ] [ BInactive BTarget ] -> win
-late [ TInactive TTarget ] [ Bottom BTarget ] -> win
 
 ==============
 WINCONDITIONS
 ==============
 
-=======
-LEVELS
-=======
+all APlayer on ATarget
+all BPlayer on BTarget
