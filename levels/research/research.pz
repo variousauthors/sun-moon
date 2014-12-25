@@ -1,0 +1,132 @@
+( the staircase is a repeatingn pattern )
+( 
+
+ #
+#
+#
+
+)
+( the first one needs to have that blank corner filled, but then
+  it can be repeated )
+
+
+(
+..BT..
+......
+...BT.
+
+)
+
+............
+............
+....##......
+...BT.......
+....###...XX
+....##......
+.....##.....
+.....##.....
+............
+
+(
+............
+..##........
+.BT.#.......
+..##.#......
+...##.#.....
+....##.#....
+.....##.#...
+
+............
+..##........
+.BT.........
+..#.........
+............
+)
+
+( this one, on ther other hand, has no starting key piece
+............
+..##........
+.BT.##......
+..#.#.##....
+....#.#.##..
+......#.#...
+........#...
+............
+............
+)
+
+...#......
+###..#####
+T#...###$#
+##.B..####
+.#....####
+###..####P
+.##..##..+ ( I like this one better )
+
+$#.+
+##..
+T#.B
+
++.#$
+##.#
+..##
+.#..
+B.#T
+
+( TODO compare the levels that "work", find out why )
+
+( there needs to be a "P" somewhere in the level, where a wall would be )
+( this is how the controls get sent to the different folk )
+
+( this next level has an interesting twist: the purple goal needs to be )
+( constructed by grey, because it is in a purple wall )
+
+#####
+*#.B#
+..T.#
+##.+#
+P####
+
+( this level demonstrates a simple "transfer" )
+( the purple dude can't get to the other purple area )
+( without help. )
+
+( this seems to be the central mechanic: ferrying )
+
+$##....+
+###.....
+####....
+....####
+....####
+B...##PT
+
+( here is a simpler level derived from the previous two levels )
+( maybe this could be interesting if it the purple target was )
+( on the left side... )
+
+( ferrying, building )
+
+( at the moment this is very simple, but if we could find some )
+( way to have the grey target on the left, so that grey has )
+( to build purple a target, and then purple has to ferry grey )
+( that would be cool )
+
+##....##..
+T#.B..##..
+.#....##*.
+###..####P
+###..##..+
+
+
+( a more involved level )
+( design notes: I started with an impossible situation )
+( then added something to make it possible, then added something )
+( to make it a little harder. It was a lot of back and forth to get )
+( it to this point )
+
+#..##..#$
+##.#####.
+#.T..###+
+#.......#
+#.B..###.
+######P#.
