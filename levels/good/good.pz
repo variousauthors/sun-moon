@@ -1,0 +1,75 @@
+( UGH I felt pretty clever about these, but they both contain )
+( rather trivial unintended solutions. It is too easy to just break the )
+( level down, rather than solve it. Maybe that's fun too!? )
+
+( the unintended soultion involves peeling a strip off the left )
+( side of the center area, and building a bridge )
+( alternatively the dark coloured block can just build a tunnel )
+( for the ilght coloured block )
+
+( THESE TWO LEVELS ) ( are too similar )
+
+( bridging: grey builds a bridge for purple )
+( this one seems to be the poorest of them: )
+( it doesn't make use of the block at the top or digging )
+
+( ...#......
+###..#####
+T##..###$#
+##.B.#####
+.#...#####
+###..###.P
+.##.##...+ )( possibly remove the single block here )
+
+( ie .##..##..+ )
+
+( a variation on the level, with an unintended solution )
+( which of these two is "more interesting"? It would be )
+( cool to include both, since they are similar but have )
+( quite different solutions... the first requires planning )
+( ahead, and the second requires clever block breaking )
+
+( digging: grey pushes purple into a situation where it can )
+( break enough blocks free of the wall )
+
+...#......
+###..#####
+T#...###$#
+##.B..####
+.#....####
+###..####P
+.##..##..+ ( I like this one better )
+
+
+( this is too easy, but I wish it wasn't. It demonstrates a sokoban )
+( one-way gadget, the three blocks in the middle that must be moved )
+( but also demonstrates how difficult it is to stop a player in this )
+( variant. My design goal is for purple to have to cross the screen )
+( in order to unlock the gadget, but purple seems to be able to unlock it )
+( from the right in any case! Moar thinking! )
+
+( in any case this kind of works as a simple level )
+( grey unlocks purple, and then purple has to ferry )
+( grey back across the level )
+
+( unlocking )
+
+P###.#.###$#
+####.#...##.
++B..#.##.#..
+.##...##...T
+
+( the original level, based off Stephen Lavelle's sokoban level )
+( it is just "good luck" that this level actually has an interesting )
+( solution. We need to reproduce this "feel" )
+
+( this is more complex version of that first level: grey )
+( builds the purple goal )
+
+####.*
+#..#..
+#..###
+##B..#
+#..T.#
+#+.###
+P###..

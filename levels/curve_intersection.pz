@@ -1,0 +1,17 @@
+( observation: draw a smooth curve that intersects itself at least once, and that )
+( ends where it started. The figure should now have at least two )
+( distinct areas. Colour one of them white and the other black. )
+( Instead of a smooth curve, use right angles. Now you have a level! )
+
+( a simple level demonstrating this technique )
+( If we think about this level in terms of a graph, with each "room" )
+( being a node, and each wall as an edge, then it is a bipartite graph. )
+
+( this level has no moveable blocks )
+
+$##...##P
+#T#...###
+###...###
+...###...
+...###.B.
+###.....+

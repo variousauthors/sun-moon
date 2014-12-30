@@ -1,0 +1,9 @@
+( I tried to make some levels where you have classic Sokoban parts, )
+( like elbows and locks of various kinds. It turns out they all fall )
+( apart. This is because: )
+
+( once the purple dude is inside a room, if the room is small, then the )
+( purple dude can just explode it. If the room is large, then it won't )
+( work as a lock, elbow, or what have you. )
+
+( still working on discovering "the nature" of interesting puzzles in this space )
