@@ -85,7 +85,7 @@ Wall = AWall or BWall
 Target = ATarget or BTarget
 
 # = BWall
-P = BWall
+P = BWall and BTarget
 T = BWall and APlayerOff
 $ = BWall and ATarget
 
