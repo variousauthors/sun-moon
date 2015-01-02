@@ -74,7 +74,6 @@ black
 =======
 LEGEND
 =======
-( Reorganize these )
 APlayer = APlayerOn or APlayerOff
 BPlayer = BPlayerOn or BPlayerOff
 
@@ -87,16 +86,21 @@ Target = ATarget or BTarget
 (
 It seems strange that everything is organized as APlayer then BPlayer yet
 the starting player is B.
-)
-# = BWall
-P = BWall and BTarget
-T = BWall and APlayerOff
-$ = BWall and ATarget
 
+Also what's the motivation for picking some of the symbols? Like BPlayer is B but APlayer is T? Also a mix of
+symbols and a letter for the targets. Would be nice if there was a clear pattern so it was easy to make and understand
+maps. Something like A -> 1 and B -> 2 as targets in their own worlds. If their target is in the other's world then
+A -> ! or B -> @.
+)
 . = BFloor
 B = BFloor and BPlayerOn
-* = BFloor and ATarget
 + = BFloor and BTarget
+* = BFloor and ATarget
+
+# = BWall
+T = BWall and APlayerOff
+P = BWall and BTarget
+$ = BWall and ATarget
 
 X = Black
 
