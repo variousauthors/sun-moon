@@ -1,4 +1,5 @@
 ( All the player needs to do is push. )
+( The game is broken when there's only one player and the action is performed. )
 
 .#.+
 .##.

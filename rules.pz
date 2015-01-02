@@ -74,7 +74,7 @@ black
 =======
 LEGEND
 =======
-
+( Reorganize these )
 APlayer = APlayerOn or APlayerOff
 BPlayer = BPlayerOn or BPlayerOff
 
@@ -84,6 +84,10 @@ Floor = AFloor or BFloor
 Wall = AWall or BWall
 Target = ATarget or BTarget
 
+(
+It seems strange that everything is organized as APlayer then BPlayer yet
+the starting player is B.
+)
 # = BWall
 P = BWall and BTarget
 T = BWall and APlayerOff
