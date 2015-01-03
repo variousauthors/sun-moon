@@ -140,9 +140,9 @@ rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
-late [ APlayerOn ] [ no Floor no Wall ] -> [ APlayerOn ] [ AFloor ]
+late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
-late [ BPlayerOn ] [ no Floor no Wall ] -> [ BPlayerOn ] [ BFloor ]
+late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
 
 
 ==============
