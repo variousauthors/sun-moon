@@ -67,9 +67,11 @@ BWall
 Background
 gray
 
-BLACK
+ABlack
 black
 
+BBlack
+black
 
 =======
 LEGEND
@@ -83,6 +85,7 @@ PlayerOff = APlayerOff or BPlayerOff
 Floor = AFloor or BFloor
 Wall = AWall or BWall
 Target = ATarget or BTarget
+Black = ABlack or BBlack
 
 (
 It seems strange that everything is organized as APlayer then BPlayer yet
@@ -103,7 +106,7 @@ T = BWall and APlayerOff
 P = BWall and BTarget
 $ = BWall and ATarget
 
-X = Black
+X = BBlack
 
 =======
 SOUNDS
@@ -115,8 +118,8 @@ COLLISIONLAYERS
 
 Background
 Floor
-AWall, APlayer, Black
-BWall, BPlayer, Black
+AWall, APlayer, ABlack
+BWall, BPlayer, BBlack
 Target
 
 ======
@@ -125,9 +128,11 @@ RULES
 
 ( when the player presses 'x', switch paradigms )
 
+[ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
 [ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
 [ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
 [ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
+[ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ ABlack ]
 [ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
