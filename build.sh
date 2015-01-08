@@ -5,4 +5,4 @@ else
   LEVELS=$*
 fi
 mkdir -p build
-cat rules.pz world.pz $LEVELS > build/game.pz
+sed -s '$G' rules.pz world.pz $LEVELS > build/game.pz

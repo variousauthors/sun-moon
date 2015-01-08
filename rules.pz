@@ -67,9 +67,11 @@ BWall
 Background
 gray
 
-BLACK
+ABlack
 black
 
+BBlack
+black
 
 =======
 LEGEND
@@ -83,18 +85,28 @@ PlayerOff = APlayerOff or BPlayerOff
 Floor = AFloor or BFloor
 Wall = AWall or BWall
 Target = ATarget or BTarget
+Black = ABlack or BBlack
 
-# = BWall
-P = BWall
-T = BWall and APlayerOff
-$ = BWall and ATarget
+(
+It seems strange that everything is organized as APlayer then BPlayer yet
+the starting player is B.
 
+Also what's the motivation for picking some of the symbols? Like BPlayer is B but APlayer is T? Also a mix of
+symbols and a letter for the targets. Would be nice if there was a clear pattern so it was easy to make and understand
+maps. Something like A -> 1 and B -> 2 as targets in their own worlds. If their target is in the other's world then
+A -> ! or B -> @.
+)
 . = BFloor
 B = BFloor and BPlayerOn
-* = BFloor and ATarget
 + = BFloor and BTarget
+* = BFloor and ATarget
 
-X = Black
+# = BWall
+T = BWall and APlayerOff
+P = BWall and BTarget
+$ = BWall and ATarget
+
+X = BBlack
 
 =======
 SOUNDS
@@ -106,8 +118,8 @@ COLLISIONLAYERS
 
 Background
 Floor
-AWall, APlayer, Black
-BWall, BPlayer, Black
+AWall, APlayer, ABlack
+BWall, BPlayer, BBlack
 Target
 
 ======
@@ -116,9 +128,11 @@ RULES
 
 ( when the player presses 'x', switch paradigms )
 
+[ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
 [ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
 [ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
 [ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
+[ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ ABlack ]
 [ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
@@ -131,9 +145,9 @@ rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
-late [ APlayerOn ] [ no Floor no Wall ] -> [ APlayerOn ] [ AFloor ]
+late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
-late [ BPlayerOn ] [ no Floor no Wall ] -> [ BPlayerOn ] [ BFloor ]
+late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
 
 
 ==============
