@@ -154,5 +154,5 @@ late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
 WINCONDITIONS
 ==============
 
-all APlayer on ATarget
-all BPlayer on BTarget
+all ATarget on APlayer
+all BTarget on BPlayer
