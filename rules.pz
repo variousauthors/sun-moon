@@ -3,6 +3,8 @@ author arrogant.gamer
 homepage www.arrogantgamer.com
 
 norepeat_action
+realtime_interval 1.5
+run_rules_on_level_start
 
 ========
 OBJECTS
@@ -73,6 +75,18 @@ black
 BBlack
 black
 
+
+( objects for generation )
+
+Dock
+blue
+
+Gutter
+red
+
+Update
+transparent
+
 =======
 LEGEND
 =======
@@ -86,6 +100,12 @@ Floor = AFloor or BFloor
 Wall = AWall or BWall
 Target = ATarget or BTarget
 Black = ABlack or BBlack
+
+AObjects = AWall or AFloor or ABlack
+BObjects = BWall or BFloor or BBlack
+
+Utility = dock or gutter
+Anything = AObjects or BObjects
 
 (
 It seems strange that everything is organized as APlayer then BPlayer yet
@@ -108,6 +128,11 @@ $ = BWall and ATarget
 
 X = BBlack
 
+o = dock
+- = BBlack and dock
+~ = gutter
+@ = update
+
 =======
 SOUNDS
 =======
@@ -117,6 +142,7 @@ COLLISIONLAYERS
 ================
 
 Background
+Dock, Gutter, update
 Floor
 AWall, APlayer, ABlack
 BWall, BPlayer, BBlack
@@ -125,6 +151,14 @@ Target
 ======
 RULES
 ======
+
+[ > player | gutter ] -> cancel
+
+( on the first tic, the dock is empty so populate it )
+( this rule will only run on the first turn since the dock will never be empty )
+
+[ stationary APlayerOn ] [ dock no AObjects ] -> [ stationary APlayerOn ] [ dock random AObjects ]
+[ stationary BPlayerOn ] [ dock no BObjects ] -> [ stationary BPlayerOn ] [ dock random BObjects ]
 
 ( when the player presses 'x', switch paradigms )
 
@@ -137,7 +171,6 @@ RULES
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
 
-
 ( players can push walls, and inactive players within )
 rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 + rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
@@ -145,10 +178,32 @@ rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
-late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
+late [ APlayerOn ] [ no Floor no Wall no Black no Utility ] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
-late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
+late [ BPlayerOn ] [ no Floor no Wall no Black no Utility ] -> [ BPlayerOn ] [ BFloor ]
 
+( at the end of a tic, move all blocks down, eliminating the bottom row )
+( the player needs to remain stationary until the last second, so that all the )
+( remaining stationary rules can be run )
+
+( we need to act on the player, so we can't rely on them remaining stationary )
+[ update ] [ stationary Player ] -> [ action update ] [ stationary player ]
+
+down [ action update ] [ APlayerOn ] [ no dock AObjects ] -> [ action update ] [ > APlayerOn ] [ no dock > AObjects ]
+down [ action update ] [ BPlayerOn ] [ no dock BObjects ] -> [ action update ] [ > BPlayerOn ] [ no dock > BObjects ]
+
+[ action update ] [ anything gutter ] -> [ action update ] [ gutter ]
+[ action update ] [ player gutter ] -> [ action update ] [ gutter ]
+
+( repopulate the dock )
+
+( TODO we could reduce the frequency of black tiles )
+( by running random again every time a black is chosen, until we run it n times or no black is chosen )
+
+[ action update ] [ APlayerOn ] [ dock no AObjects ] -> [ action update ] [ APlayerOn ] [ dock random AObjects ]
+[ action update ] [ BPlayerOn ] [ dock no BObjects ] -> [ action update ] [ BPlayerOn ] [ dock random BObjects ]
+
+[ action update ] -> [ update ]
 
 ==============
 WINCONDITIONS
