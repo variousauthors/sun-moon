@@ -1,0 +1,17 @@
+( this is too easy, but I wish it wasn't. It demonstrates a sokoban )
+( one-way gadget, the three blocks in the middle that must be moved )
+( but also demonstrates how difficult it is to stop a player in this )
+( variant. My design goal is for purple to have to cross the screen )
+( in order to unlock the gadget, but purple seems to be able to unlock it )
+( from the right in any case! Moar thinking! )
+
+( in any case this kind of works as a simple level )
+( grey unlocks purple, and then purple has to ferry )
+( grey back across the level )
+
+( unlocking )
+
+####.#.###$#
+####.#...##.
++B..#.##.#..
+.##...##...T
