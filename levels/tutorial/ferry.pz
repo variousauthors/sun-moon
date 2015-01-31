@@ -2,5 +2,5 @@
 ( This level gives a message 'looped through 50 times, gave up. too many loops!' when BPlayer tries to move. )
 
 $##P
-#B##
+#B.#
 T###
