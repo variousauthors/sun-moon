@@ -3,16 +3,13 @@ author arrogant.gamer
 homepage www.arrogantgamer.com
 
 background_color #292929
-
 norepeat_action
 
 ========
 OBJECTS
 ========
 
-( Purple )
-
-(
+( Player A/Blue
 #059CC0 wall
 #025B70 player
 #037590
@@ -45,16 +42,13 @@ AFloor
 AWall
 #059CC0
 
-( Brown )
 
-( 
-dark to light
+( Player B/Orange
 #FF7F00 wall 
 #B55A00 player
 #E87300
 #FF952C
 #FFAC5B floor
-
 )
 
 BPlayerOn
@@ -82,10 +76,10 @@ BFloor
 BWall
 #FF7F00
 
-( utility objects )
+( Utility objects )
 
-Background
-gray
+Background ( Should never be seen. )
+black
 
 ABlack
 #292929
@@ -169,11 +163,9 @@ late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
 late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
 
-
 ==============
 WINCONDITIONS
 ==============
 
 all APlayer on ATarget
 all BPlayer on BTarget
-
