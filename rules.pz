@@ -140,6 +140,14 @@ Target
 RULES
 ======
 
+( the starting player can be alone in a level )
+( in this case, we want to prevent them from using the action button )
+[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOn ] [ action APlayerOff ]
+[ action BPlayerOn ] -> [ BPlayerOn ]
+
+( restore the action if the player is not alone )
+[ action APlayerOff ] [ BPlayerOn ] -> [ APlayerOff ] [ action BPlayerOn ]
+
 ( when the player presses 'x', switch paradigms )
 
 [ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
@@ -151,11 +159,10 @@ RULES
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
 
-
 ( players can push walls, and inactive players within )
-rigid [ > Player | Wall ] -> [ > Player | > Wall ]
+( this group loops endlessly if your first move is to push a wall )
+rigid [ > Player | Wall ] -> [ > Player | > Wall ] 
 + rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
-
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
