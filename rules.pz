@@ -3,16 +3,13 @@ author arrogant.gamer
 homepage www.arrogantgamer.com
 
 background_color #292929
-
 norepeat_action
 
 ========
 OBJECTS
 ========
 
-( Purple )
-
-(
+( Player A/Blue
 #059CC0 wall
 #025B70 player
 #037590
@@ -45,16 +42,13 @@ AFloor
 AWall
 #059CC0
 
-( Brown )
 
-( 
-dark to light
+( Player B/Orange
 #FF7F00 wall 
 #B55A00 player
 #E87300
 #FF952C
 #FFAC5B floor
-
 )
 
 BPlayerOn
@@ -82,10 +76,10 @@ BFloor
 BWall
 #FF7F00
 
-( utility objects )
+( Utility objects )
 
-Background
-gray
+Background ( Should never be seen. )
+black
 
 ABlack
 #292929
@@ -146,6 +140,14 @@ Target
 RULES
 ======
 
+( the starting player can be alone in a level )
+( in this case, we want to prevent them from using the action button )
+[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOn ] [ action APlayerOff ]
+[ action BPlayerOn ] -> [ BPlayerOn ]
+
+( restore the action if the player is not alone )
+[ action APlayerOff ] [ BPlayerOn ] -> [ APlayerOff ] [ action BPlayerOn ]
+
 ( when the player presses 'x', switch paradigms )
 
 [ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
@@ -157,7 +159,6 @@ RULES
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
 
-
 ( players can push walls, and inactive players within )
 rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 + rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
@@ -168,7 +169,6 @@ late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
 late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
 late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
-
 
 ==============
 WINCONDITIONS
