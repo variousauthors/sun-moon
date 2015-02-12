@@ -6,10 +6,10 @@
 ( from the right in any case! Moar thinking! )
 
 ( in any case this kind of works as a simple level )
-( grey unlocks purple, and then purple has to ferry )
-( grey back across the level )
+( B unlocks A, and then A has to ferry B back across the level )
 
 ( unlocking )
+message
 
 ####.#.###$#
 ####.#...##.
