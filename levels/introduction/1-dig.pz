@@ -1,6 +1,6 @@
 ( The first non-trivial level. Options are limited and a one-push ferry seems to be )
 ( the simplest solution. )
-message 5.
+message
 
 T.#+
 ..#.
