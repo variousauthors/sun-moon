@@ -161,7 +161,7 @@ RULES
 
 ( players can push walls, and inactive players within )
 ( this group loops endlessly if your first move is to push a wall )
-rigid [ > Player | Wall ] -> [ > Player | > Wall ] 
+rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 + rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
@@ -176,4 +176,3 @@ WINCONDITIONS
 
 all APlayer on ATarget
 all BPlayer on BTarget
-
