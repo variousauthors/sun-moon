@@ -1,6 +1,7 @@
 ( A straightfoward level for soon after the tutorial. The goal is to reinforce )
 ( the mechanics of the game. Various solutions involve ferrying one player to )
 ( its target and then it ferrying the other. )
+message 7.
 
 T.+#
 .###
