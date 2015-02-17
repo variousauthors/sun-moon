@@ -1,51 +1,7 @@
-( UGH I felt pretty clever about these, but they both contain )
-( rather trivial unintended solutions. It is too easy to just break the )
-( level down, rather than solve it. Maybe that's fun too!? )
-
-( the unintended soultion involves peeling a strip off the left )
-( side of the center area, and building a bridge )
-( alternatively the dark coloured block can just build a tunnel )
-( for the ilght coloured block )
-
-( THESE TWO LEVELS ) ( are too similar )
-
-( bridging: grey builds a bridge for purple )
-( this one seems to be the poorest of them: )
-( it doesn't make use of the block at the top or digging )
-
-( ...#......
-###..#####
-T##..###$#
-##.B.#####
-.#...#####
-###..###.#
-.##.##...+ )( possibly remove the single block here )
-
-( ie .##..##..+ )
-
-( a variation on the level, with an unintended solution )
-( which of these two is "more interesting"? It would be )
-( cool to include both, since they are similar but have )
-( quite different solutions... the first requires planning )
-( ahead, and the second requires clever block breaking )
-
-( digging: grey pushes purple into a situation where it can )
-( break enough blocks free of the wall )
-
-...#......
-###..#####
-T#...###$#
-##.B..####
-.#....####
-###..#####
-.##..##..+ ( I like this one better )
-
 ( the original level, based off Stephen Lavelle's sokoban level )
 ( it is just "good luck" that this level actually has an interesting )
 ( solution. We need to reproduce this "feel" )
-
-( this is more complex version of that first level: grey )
-( builds the purple goal )
+message
 
 ####.*
 #..#..
