@@ -7,6 +7,8 @@ The most powerful player in a zone is the one that can move freely, and it can t
 other player to cross given a single block to ferry them in.
 )
 
+message
+
 ...#......
 ###..#####
 T#...###$#

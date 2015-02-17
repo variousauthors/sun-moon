@@ -1,0 +1,12 @@
+( the original level, based off Stephen Lavelle's sokoban level )
+( it is just "good luck" that this level actually has an interesting )
+( solution. We need to reproduce this "feel" )
+message
+
+####.*
+#..#..
+#..###
+##B..#
+#..T.#
+#+.###
+####..
