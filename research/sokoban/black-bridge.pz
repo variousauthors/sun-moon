@@ -5,12 +5,11 @@
 ( sokoban level into an instance of push space? )
 message
 
-xxx####
-xxx#..#
-xxx#B.#
-#####.# (<-- these three open spots are the original sokoban targets )
+xxxx##x
+x+.#..#
+x.##B.#
+x####.$ (<-- these three open spots are the original sokoban targets )
 #...#.x (<-- and the three free walls next to them are the crates )
 #.x.#.x (<--)
 #....Tx
-###xxxx
-
+x##xxxx
