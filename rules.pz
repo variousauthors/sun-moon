@@ -122,11 +122,11 @@ A -> ! or B -> @.
 . = BFloor
 B = BFloor and BPlayerOn
 + = BFloor and BTargetOn
-* = BFloor and ATargetOn
+* = BFloor and ATargetOff
 
 # = BWall
 T = BWall and APlayerOff
-P = BWall and BTargetOff
+P = BWall and BTargetOn
 $ = BWall and ATargetOff
 
 X = BBlack
@@ -195,7 +195,6 @@ WINCONDITIONS
 
 all APlayer on ATarget
 all BPlayer on BTarget
-
 
 =======
 LEVELS
