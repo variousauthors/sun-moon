@@ -26,13 +26,16 @@ APlayerOn
 APlayerOff
 transparent
 
-ATarget
+ATargetOn
 #025B70
 .....
 .....
 ..0..
 .....
 .....
+
+ATargetOff
+transparent
 
 AFloor
 #4DB5CD
@@ -60,13 +63,16 @@ BPlayerOn
 BPlayerOff
 transparent
 
-BTarget
+BTargetOn
 #B55A00
 .....
 .....
 ..0..
 .....
 .....
+
+BTargetOff
+transparent
 
 BFloor
 #FFAC5B
@@ -99,6 +105,8 @@ Player = APlayerOn or BPlayerOn
 PlayerOff = APlayerOff or BPlayerOff
 Floor = AFloor or BFloor
 Wall = AWall or BWall
+ATarget = ATargetOn or ATargetOff
+BTarget = BTargetOn or BTargetOff
 Target = ATarget or BTarget
 Black = ABlack or BBlack
 
@@ -113,13 +121,13 @@ A -> ! or B -> @.
 )
 . = BFloor
 B = BFloor and BPlayerOn
-+ = BFloor and BTarget
-* = BFloor and ATarget
++ = BFloor and BTargetOn
+* = BFloor and ATargetOn
 
 # = BWall
 T = BWall and APlayerOff
-P = BWall and BTarget
-$ = BWall and ATarget
+P = BWall and BTargetOff
+$ = BWall and ATargetOff
 
 X = BBlack
 z = BBlack and Tutorial
@@ -155,10 +163,14 @@ RULES
 [ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
 [ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
 [ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
+[ action APlayerOn ] [ ATargetOn ] -> [ action APlayerOn ] [ ATargetOff ]
+[ action APlayerOn ] [ BTargetOff ] -> [ action APlayerOn ] [ BTargetOn ]
 [ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
 [ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ ABlack ]
 [ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
+[ action BPlayerOn ] [ BTargetOn ] -> [ action BPlayerOn ] [ BTargetOff ]
+[ action BPlayerOn ] [ ATargetOff ] -> [ action BPlayerOn ] [ ATargetOn ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
 
 ( players can push walls, and inactive players within )
@@ -183,4 +195,9 @@ WINCONDITIONS
 
 all APlayer on ATarget
 all BPlayer on BTarget
+
+
+=======
+LEVELS
+=======
 
