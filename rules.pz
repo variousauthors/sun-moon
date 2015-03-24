@@ -138,7 +138,8 @@ B = BFloor and BPlayerOn
 ? = BFloor and OTarget
 " = BFloor and BTarget
 
-X = BBlack
+X = OBlack
++ = BBlack
 
 =======
 SOUNDS
