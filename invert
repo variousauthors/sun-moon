@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+CONVERSION_MAP = [
+  ['.', 'B', '+', '*', '#', 'T', 'P', '$'],
+  ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
+]
+
+INVERSION_MAP = [
+  ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
+  ['>', 'B', '"', '?', '#', '0', ':', '[', 'X' ]
+]
+
+def invert(string, map: INVERSION_MAP)
+  string.chars.inject("") do |inversion, char|
+    if index = map[0].index(char)
+      inversion << map[1][index]
+    elsif index = map[1].index(char)
+      inversion << map[0][index]
+    else
+      inversion << char
+    end
+
+    inversion
+  end
+end
+
+def convert(string)
+  invert(string, map: CONVERSION_MAP)
+end
+
+filename = ARGV.first
+
+level_file = File.open(filename, 'r')
+level = level_file.read
+
+match = level.match(/message\n+(?<map>.*)/m)
+map = match[:map]
+
+puts convert(map)
+puts invert(convert(map))
+
