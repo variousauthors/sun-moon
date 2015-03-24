@@ -131,15 +131,15 @@ O = OFloor and OPlayerOn
 ] = OWall and BTarget
 
 ( blue side active )
-> = BFloor
-B = BFloor and BPlayerOn
-" = BFloor and BTarget
-? = BFloor and OTarget
-
 # = BWall
 0 = BWall and OPlayerOff
-: = BWall and BTarget
 } = BWall and OTarget
+: = BWall and BTarget
+
+> = BFloor
+B = BFloor and BPlayerOn
+? = BFloor and OTarget
+" = BFloor and BTarget
 
 X = BBlack
 z = BBlack and Tutorial

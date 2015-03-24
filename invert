@@ -1,50 +1,14 @@
 #!/usr/bin/env ruby
 
-CONVERSION_MAP = [
-  ['.', 'B', '+', '*', '#', 'T', 'P', '$', 'X' ],
-  ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
-]
+require_relative('lib/utils.rb')
 
 INVERSION_MAP = [
   ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
-  ['>', 'B', '"', '?', '#', '0', ':', '}', 'X' ]
+  ['#', '0', '}', ':', '>', 'B', '?', '"', 'X' ]
 ]
 
-def invert(string, map: INVERSION_MAP)
-  string.chars.inject("") do |inversion, char|
-    if index = map[0].index(char)
-      inversion << map[1][index]
-    elsif index = map[1].index(char)
-      inversion << map[0][index]
-    else
-      inversion << char
-    end
-
-    inversion
-  end
+def invert(string)
+  character_map(string, map: INVERSION_MAP)
 end
 
-def convert(string)
-  invert(string, map: CONVERSION_MAP)
-end
-
-ARGV.each do |filename|
-  puts filename
-  level_file = File.open(filename, 'r')
-  level = level_file.read
-
-  # regular expressions
-  # preamble: until the term 'message' or two newlines not followed by a '(' or EOF
-  preamble = '(?<preamble>.*?(\nmessage|\n\n(?!\()|\Z))'
-  map = '(?<map>\n*.*?(\Z|\n\n))'
-  solutions = '(?<solutions>\( Solutions \).*)?'
-
-  match = level.match(/#{ preamble }#{ map }#{ solutions }/m)
-
-  map = match[:map]
-
-  level_file.reopen(filename, 'w')
-  level_file.write("#{ match[:preamble] }#{ convert(map) }#{ match[:solutions] }")
-end
-
-
+do_work(ARGV, work: method(:invert))
