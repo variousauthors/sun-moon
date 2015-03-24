@@ -7,7 +7,7 @@ CONVERSION_MAP = [
 
 INVERSION_MAP = [
   ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
-  ['>', 'B', '"', '?', '#', '0', ':', '[', 'X' ]
+  ['>', 'B', '"', '?', '#', '0', ':', '}', 'X' ]
 ]
 
 def invert(string, map: INVERSION_MAP)
@@ -43,14 +43,8 @@ ARGV.each do |filename|
 
   map = match[:map]
 
-  puts "pre: #{ match[:preamble] }"
-  puts "map: #{ match[:map] }"
-  puts "con: #{ convert(map) }"
-#  puts convert(map)
-  puts "sol: #{ match[:solutions] }"
-
   level_file.reopen(filename, 'w')
-  level_file.write("#{ match[:preamble] }#{ match[:map] }#{ match[:solutions] }")
+  level_file.write("#{ match[:preamble] }#{ convert(map) }#{ match[:solutions] }")
 end
 
 
