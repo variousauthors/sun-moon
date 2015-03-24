@@ -48,6 +48,9 @@ ARGV.each do |filename|
   puts "con: #{ convert(map) }"
 #  puts convert(map)
   puts "sol: #{ match[:solutions] }"
+
+  level_file.reopen(filename, 'w')
+  level_file.write("#{ match[:preamble] }#{ match[:map] }#{ match[:solutions] }")
 end
 
 
