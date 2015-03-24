@@ -85,9 +85,6 @@ BBlack
 OBlack
 #292929
 
-Tutorial
-transparent
-
 =======
 LEGEND
 =======
@@ -142,7 +139,6 @@ B = BFloor and BPlayerOn
 " = BFloor and BTarget
 
 X = BBlack
-z = BBlack and Tutorial
 
 =======
 SOUNDS
@@ -156,7 +152,7 @@ Background
 Floor
 BWall, BPlayer, BBlack
 OWall, OPlayer, OBlack
-Target, tutorial
+Target
 
 ======
 RULES
@@ -191,11 +187,6 @@ late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
 late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
 late [ OPlayerOn ] [ Floor Wall ] -> [ OPlayerOn ] [ Wall ]
 late [ OPlayerOn ] [ no Floor no Wall no Black] -> [ OPlayerOn ] [ OFloor ]
-
-( display the 'z' to undo message in tutorial level ) 
-down [ tutorial ] [ OPlayerOff | black ] -> [ ] [ OPlayerOff | black ] message press 'z' to undo
-left [ tutorial ] [ OPlayerOff | black ] -> [ ] [ OPlayerOff | black ] message press 'z' to undo
-right [ tutorial ] [ OPlayerOff no target | black ] -> [ ] [ OPlayerOff | black ] message press 'z' to undo
 
 ==============
 WINCONDITIONS
