@@ -120,26 +120,26 @@ A -> ! or B -> @.
 ( / and . for the inactive player's target )
 
 ( orange side active )
-] = OFloor
+. = OFloor
 O = OFloor and OPlayerOn
 ' = OFloor and OTarget
-/ = OFloor and BTarget
+] = OFloor and BTarget
 
-[ = OWall
+3 = OWall
 8 = OWall and BPlayerOff
 ; = OWall and OTarget
-. = OWall and BTarget
+[ = OWall and BTarget
 
 ( blue side active )
-} = BFloor
+> = BFloor
 B = BFloor and BPlayerOn
 " = BFloor and BTarget
-? = BFloor and OTarget
+} = BFloor and OTarget
 
-{ = BWall
+# = BWall
 0 = BWall and OPlayerOff
 : = BWall and BTarget
-> = BWall and OTarget
+{ = BWall and OTarget
 
 X = BBlack
 z = BBlack and Tutorial

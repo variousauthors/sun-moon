@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 CONVERSION_MAP = [
-  ['.', 'B', '+', '*', '#', 'T', 'P', '$'],
+  ['.', 'B', '+', '*', '#', 'T', 'P', '$', 'X' ],
   ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
 ]
 
@@ -28,14 +28,26 @@ def convert(string)
   invert(string, map: CONVERSION_MAP)
 end
 
-filename = ARGV.first
+ARGV.each do |filename|
+  puts filename
+  level_file = File.open(filename, 'r')
+  level = level_file.read
 
-level_file = File.open(filename, 'r')
-level = level_file.read
+  # regular expressions
+  # preamble: until the term 'message' or two newlines not followed by a '(' or EOF
+  preamble = '(?<preamble>.*?(\nmessage|\n\n(?!\()|\Z))'
+  map = '(?<map>\n*.*?(\Z|\n\n))'
+  solutions = '(?<solutions>\( Solutions \).*)?'
 
-match = level.match(/message\n+(?<map>.*)/m)
-map = match[:map]
+  match = level.match(/#{ preamble }#{ map }#{ solutions }/m)
 
-puts convert(map)
-puts invert(convert(map))
+  map = match[:map]
+
+  puts "pre: #{ match[:preamble] }"
+  puts "map: #{ match[:map] }"
+  puts "con: #{ convert(map) }"
+#  puts convert(map)
+  puts "sol: #{ match[:solutions] }"
+end
+
 
