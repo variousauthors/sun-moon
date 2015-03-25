@@ -6,13 +6,12 @@ Another interesting thing that this level illustrates is how the color imbalance
 The most powerful player in a zone is the one that can move freely, and it can trivially assist the
 other player to cross given a single block to ferry them in.
 )
-
 message
 
-...#......
-###..#####
-T#...###$#
-##.B..####
-.#....####
-###..#####
-.##..##..+
+###>######
+>>>##>>>>>
+B>###>>>">
+>>#0##>>>>
+#>####>>>>
+>>>##>>>>>
+#>>##>>##}
