@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative('lib/utils.rb')
+
+CONVERSION_MAP = [
+  ['.', 'B', '+', '*', '#', 'T', 'P', '$', 'X' ],
+  ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
+]
+
+def convert(string)
+  character_map(string, map: CONVERSION_MAP)
+end
+
+do_work(ARGV, work: method(:convert))

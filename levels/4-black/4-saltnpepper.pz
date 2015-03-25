@@ -2,12 +2,12 @@
 ( a pinch, swap the players, and avoid some trap space. )
 message
 
-B..#*.
-#.X.#X
-.X.#X+
-.#....
-X.X#T.
-.X....
+0##>:#
+>#+#>+
+#+#>+}
+#>####
++#+>B#
+#+####
 
 ( Solutions )
 (dddssasdd a sdsaawdw da saawwwsssddww d)

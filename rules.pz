@@ -7,7 +7,7 @@ norepeat_action
 OBJECTS
 ========
 
-( Player A/Blue
+( Blue Side
 #059CC0 wall
 #025B70 player
 #037590
@@ -15,45 +15,8 @@ OBJECTS
 #4DB5CD floor
 )
 
-APlayerOn
-#025B70
-00000
-00000
-00.00
-00000
-00000
-
-APlayerOff
-transparent
-
-ATargetOn
-#025B70
-.....
-.....
-..0..
-.....
-.....
-
-ATargetOff
-transparent
-
-AFloor
-#4DB5CD
-
-AWall
-#059CC0
-
-
-( Player B/Orange
-#FF7F00 wall 
-#B55A00 player
-#E87300
-#FF952C
-#FFAC5B floor
-)
-
 BPlayerOn
-#B55A00
+#025B70
 00000
 00000
 00.00
@@ -64,7 +27,7 @@ BPlayerOff
 transparent
 
 BTargetOn
-#B55A00
+#025B70
 .....
 .....
 ..0..
@@ -75,9 +38,46 @@ BTargetOff
 transparent
 
 BFloor
-#FFAC5B
+#4DB5CD
 
 BWall
+#059CC0
+
+
+( Orange Side
+#FF7F00 wall 
+#B55A00 player
+#E87300
+#FF952C
+#FFAC5B floor
+)
+
+OPlayerOn
+#B55A00
+00000
+00000
+00.00
+00000
+00000
+
+OPlayerOff
+transparent
+
+OTargetOn
+#B55A00
+.....
+.....
+..0..
+.....
+.....
+
+OTargetOff
+transparent
+
+OFloor
+#FFAC5B
+
+OWall
 #FF7F00
 
 ( Utility objects )
@@ -85,30 +85,27 @@ BWall
 Background ( Should never be seen. )
 black
 
-ABlack
-#292929
-
 BBlack
 #292929
 
-Tutorial
-transparent
+OBlack
+#292929
 
 =======
 LEGEND
 =======
 
-APlayer = APlayerOn or APlayerOff
 BPlayer = BPlayerOn or BPlayerOff
+OPlayer = OPlayerOn or OPlayerOff
 
-Player = APlayerOn or BPlayerOn
-PlayerOff = APlayerOff or BPlayerOff
-Floor = AFloor or BFloor
-Wall = AWall or BWall
-ATarget = ATargetOn or ATargetOff
+Player = BPlayerOn or OPlayerOn
+PlayerOff = BPlayerOff or OPlayerOff
+Floor = BFloor or OFloor
+Wall = BWall or OWall
+OTarget = OTargetOn or OTargetOff
 BTarget = BTargetOn or BTargetOff
-Target = ATarget or BTarget
-Black = ABlack or BBlack
+Target = BTarget or OTarget
+Black = BBlack or OBlack
 
 (
 It seems strange that everything is organized as APlayer then BPlayer yet
@@ -119,18 +116,38 @@ symbols and a letter for the targets. Would be nice if there was a clear pattern
 maps. Something like A -> 1 and B -> 2 as targets in their own worlds. If their target is in the other's world then
 A -> ! or B -> @.
 )
-. = BFloor
-B = BFloor and BPlayerOn
-+ = BFloor and BTargetOn
-* = BFloor and ATargetOff
 
+( hold shift to switch sides )
+( O and B for the active actor on each side )
+( 0 and 8 for the inactive because they resemble 0 and 8 )
+
+( ' and ; for the active player's target ) ( on floor and wall respectively )
+( / and . for the inactive player's target )
+
+( orange side active )
+. = OFloor
+O = OFloor and OPlayerOn
+' = OFloor and OTargetOn
+/ = OFloor and BTargetOff
+
+3 = OWall
+8 = OWall and BPlayerOff
+; = OWall and OTargetOn
+] = OWall and BTargetOff
+
+( blue side active )
 # = BWall
-T = BWall and APlayerOff
-P = BWall and BTargetOn
-$ = BWall and ATargetOff
+0 = BWall and OPlayerOff
+} = BWall and OTargetOff
+: = BWall and BTargetOn
 
-X = BBlack
-z = BBlack and Tutorial
+> = BFloor
+B = BFloor and BPlayerOn
+? = BFloor and OTargetOff
+" = BFloor and BTargetOn
+
+X = OBlack
++ = BBlack
 
 =======
 SOUNDS
@@ -142,9 +159,9 @@ COLLISIONLAYERS
 
 Background
 Floor
-AWall, APlayer, ABlack
 BWall, BPlayer, BBlack
-Target, tutorial
+OWall, OPlayer, OBlack
+Target
 
 ======
 RULES
@@ -152,26 +169,26 @@ RULES
 
 ( the starting player can be alone in a level )
 ( in this case, we want to prevent them from using the action button )
-[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOn ] [ action APlayerOff ]
-[ action BPlayerOn ] -> [ BPlayerOn ]
+[ action OPlayerOn ] [ BPlayerOff ] -> [ OPlayerOn ] [ action BPlayerOff ]
+[ action OPlayerOn ] -> [ OPlayerOn ]
 
 ( restore the action if the player is not alone )
-[ action APlayerOff ] [ BPlayerOn ] -> [ APlayerOff ] [ action BPlayerOn ]
+[ action BPlayerOff ] [ OPlayerOn ] -> [ BPlayerOff ] [ action OPlayerOn ]
 
 ( when the player presses 'x', switch paradigms )
 
-[ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
-[ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
-[ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
-[ action APlayerOn ] [ ATargetOn ] -> [ action APlayerOn ] [ ATargetOff ]
-[ action APlayerOn ] [ BTargetOff ] -> [ action APlayerOn ] [ BTargetOn ]
-[ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
-[ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ ABlack ]
-[ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
-[ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
+[ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ OBlack ]
+[ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ OFloor ]
+[ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ OWall ]
 [ action BPlayerOn ] [ BTargetOn ] -> [ action BPlayerOn ] [ BTargetOff ]
-[ action BPlayerOn ] [ ATargetOff ] -> [ action BPlayerOn ] [ ATargetOn ]
-[ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
+[ action BPlayerOn ] [ OTargetOff ] -> [ action BPlayerOn ] [ OTargetOn ]
+[ action BPlayerOn ] [ OPlayerOff ] -> [ BPlayerOff ] [ OPlayerOn ]
+[ action OPlayerOn ] [ OBlack ] -> [ action OPlayerOn ] [ BBlack ]
+[ action OPlayerOn ] [ OWall ] -> [ action OPlayerOn ] [ BFloor ]
+[ action OPlayerOn ] [ OFloor ] -> [ action OPlayerOn ] [ BWall ]
+[ action OPlayerOn ] [ OTargetOn ] -> [ action OPlayerOn ] [ OTargetOff ]
+[ action OPlayerOn ] [ BTargetOff ] -> [ action OPlayerOn ] [ BTargetOn ]
+[ action OPlayerOn ] [ BPlayerOff ] -> [ OPlayerOff ] [ BPlayerOn ]
 
 ( players can push walls, and inactive players within )
 ( this group loops endlessly if your first move is to push a wall )
@@ -179,24 +196,15 @@ rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 + rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
-late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
-late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
 late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
-
-( display the 'z' to undo message in tutorial level ) 
-down [ tutorial ] [ BPlayerOff | black ] -> [ ] [ BPlayerOff | black ] message press 'z' to undo
-left [ tutorial ] [ BPlayerOff | black ] -> [ ] [ BPlayerOff | black ] message press 'z' to undo
-right [ tutorial ] [ BPlayerOff no target | black ] -> [ ] [ BPlayerOff | black ] message press 'z' to undo
+late [ OPlayerOn ] [ Floor Wall ] -> [ OPlayerOn ] [ Wall ]
+late [ OPlayerOn ] [ no Floor no Wall no Black] -> [ OPlayerOn ] [ OFloor ]
 
 ==============
 WINCONDITIONS
 ==============
 
-all APlayer on ATarget
 all BPlayer on BTarget
-
-=======
-LEVELS
-=======
+all OPlayer on OTarget
 

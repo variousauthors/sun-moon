@@ -1,0 +1,16 @@
+( this is a sokoban level restructured so that )
+( the moveable wall bits must be in the sokoban )
+( solution spots in order for the level to be solved )
+( I wonder if it is possible to translate an arbitrary )
+( sokoban level into an instance of push space? )
+message
+
+xxxx33x
+x'.3..3
+x.33O.3
+x3333.]
+3...3.x
+3.x.3.x
+3....8x
+x33xxxx
+
