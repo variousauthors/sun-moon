@@ -2,10 +2,8 @@
 ( The black border and 'z' marker trigger an undo reminder. )
 message
 
-xxxxxx
-x$##Px
-x#B.#x
-xT###x
-xxxxxx
+$##P
+#B.#
+T###
 
 ( Solutions )
