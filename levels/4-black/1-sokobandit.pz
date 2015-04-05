@@ -5,12 +5,13 @@
 ( sokoban level into an instance of push space? )
 message
 
-xxxx33x
-x'.3..3
-x.33O.3
-x3333.]
-3...3.x
-3.x.3.x
-3....8x
-x33xxxx
+xxxx##x
+x+.#..#
+x.##B.#
+x####.$
+#...#.x
+#.x.#.x
+#....Tx
+x##xxxx
 
+( Solutions )

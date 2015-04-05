@@ -3,12 +3,12 @@
 require_relative('lib/utils.rb')
 
 CONVERSION_MAP = [
-  ['.', 'B', '+', '*', '#', 'T', 'P', '$', 'X' ],
   ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
+  ['.', 'B', '+', '*', '#', 'T', 'P', '$', 'X' ],
 ]
 
 def convert(string)
-  character_map(string, map: CONVERSION_MAP)
+  character_map(string, CONVERSION_MAP)
 end
 
-do_work(ARGV, work: method(:convert))
+do_work(ARGV, method(:convert))

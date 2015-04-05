@@ -3,12 +3,12 @@
 require_relative('lib/utils.rb')
 
 INVERSION_MAP = [
+  ['#', '0', '}', ':', '>', 'B', '?', '"', '+' ],
   ['.', 'O', '\'', '/', '3', '8', ';', ']', 'X' ],
-  ['#', '0', '}', ':', '>', 'B', '?', '"', '+' ]
 ]
 
 def invert(string)
-  character_map(string, map: INVERSION_MAP)
+  character_map(string, INVERSION_MAP)
 end
 
-do_work(ARGV, work: method(:invert))
+do_work(ARGV, method(:invert))

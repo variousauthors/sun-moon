@@ -1,5 +1,5 @@
 
-def character_map(string, map: [[], []])
+def character_map(string, map = [[], []])
   string.chars.inject("") do |inversion, char|
     if index = map[0].index(char)
       inversion << map[1][index]
@@ -13,7 +13,7 @@ def character_map(string, map: [[], []])
   end
 end
 
-def do_work(args, work: method(:character_map))
+def do_work(args, work = method(:character_map))
   # convert each of the given file names from the old style to the new
   args.each do |filename|
     puts filename
