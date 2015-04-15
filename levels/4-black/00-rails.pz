@@ -1,9 +1,17 @@
 ( . )
 message
 
-...#.....#..+
-X.X#X.X.X#X.X
-X.X.X.X.X.X.X
-*.B#.....#..T
+(X.X.X.X
+B.....+
+X.X.X.X
+X.X.X.X
+X#X#X#X
+*.#...T
+X.X.X.X)
+
+B.#...#.+
+X#X.X.X#X
+X.X#X#X.X
+T.##.###$
 
 ( Solutions )
