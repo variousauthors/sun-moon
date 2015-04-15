@@ -124,6 +124,9 @@ X = BBlack
 SOUNDS
 =======
 
+sfx0 7205703
+sfx1 36824103
+
 ================
 COLLISIONLAYERS
 ================
@@ -137,6 +140,7 @@ Target
 ======
 RULES
 ======
+
 
 ( the starting player can be alone in a level )
 ( in this case, we want to prevent them from using the action button )
@@ -167,6 +171,10 @@ late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
 late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
 late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
+
+[ > BPlayer | BTarget ] -> sfx0
+[ > APlayer | ATarget ] -> sfx1
+
 
 ==============
 WINCONDITIONS
