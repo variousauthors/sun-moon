@@ -1,13 +1,7 @@
-( . )
+( An experiment on levels with a mesh of single-block passages. They make )
+( for complicated levels because you can't easily move back through areas )
+( that have been travelled through. )
 message
-
-(X.X.X.X
-B.....+
-X.X.X.X
-X.X.X.X
-X#X#X#X
-*.#...T
-X.X.X.X)
 
 B.#...#.+
 X#X.X.X#X
@@ -15,3 +9,4 @@ X.X#X#X.X
 T.##.###$
 
 ( Solutions )
+(dsswwd dddwwssd dddsswwd dddwwssd dd)
