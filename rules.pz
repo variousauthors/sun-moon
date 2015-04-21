@@ -1,6 +1,8 @@
 title Push Space
+homepage pushspace.io
 
 background_color #292929
+key_repeat_interval 0.2
 norepeat_action
 
 ========
