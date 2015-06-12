@@ -76,6 +76,16 @@ BFloor
 BWall
 #FF7F00
 
+( Combined )
+
+ABTarget
+#123456
+.....
+.....
+..0..
+.....
+.....
+
 ( Utility objects )
 
 Background ( Should never be seen. )
@@ -86,6 +96,12 @@ ABlack
 
 BBlack
 #292929
+
+AWhite
+#FFFFFF
+
+BWhite
+#FFFFFF
 
 =======
 LEGEND
@@ -98,8 +114,9 @@ Player = APlayerOn or BPlayerOn
 PlayerOff = APlayerOff or BPlayerOff
 Floor = AFloor or BFloor
 Wall = AWall or BWall
-Target = ATarget or BTarget
+Target = ATarget or BTarget or ABTarget
 Black = ABlack or BBlack
+White = AWhite or BWhite
 
 (
 It seems strange that everything is organized as APlayer then BPlayer yet
@@ -120,7 +137,10 @@ T = BWall and APlayerOff
 P = BWall and BTarget
 $ = BWall and ATarget
 
+& = ABTarget
+
 X = BBlack
+W = BWhite
 
 =======
 SOUNDS
@@ -131,7 +151,7 @@ COLLISIONLAYERS
 ================
 
 Background
-Floor
+Floor, AWhite, BWhite
 AWall, APlayer, ABlack
 BWall, BPlayer, BBlack
 Target
@@ -151,10 +171,12 @@ RULES
 ( when the player presses 'x', switch paradigms )
 
 [ action APlayerOn ] [ ABlack ] -> [ action APlayerOn ] [ BBlack ]
+[ action APlayerOn ] [ AWhite ] -> [ action APlayerOn ] [ BWhite ]
 [ action APlayerOn ] [ AWall ] -> [ action APlayerOn ] [ BFloor ]
 [ action APlayerOn ] [ AFloor ] -> [ action APlayerOn ] [ BWall ]
 [ action APlayerOn ] [ BPlayerOff ] -> [ APlayerOff ] [ BPlayerOn ]
 [ action BPlayerOn ] [ BBlack ] -> [ action BPlayerOn ] [ ABlack ]
+[ action BPlayerOn ] [ BWhite ] -> [ action BPlayerOn ] [ AWhite ]
 [ action BPlayerOn ] [ BWall ] -> [ action BPlayerOn ] [ AFloor ]
 [ action BPlayerOn ] [ BFloor ] -> [ action BPlayerOn ] [ AWall ]
 [ action BPlayerOn ] [ APlayerOff ] -> [ BPlayerOff ] [ APlayerOn ]
@@ -166,14 +188,13 @@ rigid [ > Player | Wall ] -> [ > Player | > Wall ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
-late [ APlayerOn ] [ no Floor no Wall no Black] -> [ APlayerOn ] [ AFloor ]
+late [ APlayerOn ] [ no Floor no Wall no Black no White] -> [ APlayerOn ] [ AFloor ]
 late [ BPlayerOn ] [ Floor Wall ] -> [ BPlayerOn ] [ Wall ]
-late [ BPlayerOn ] [ no Floor no Wall no Black] -> [ BPlayerOn ] [ BFloor ]
+late [ BPlayerOn ] [ no Floor no Wall no Black no White] -> [ BPlayerOn ] [ BFloor ]
 
 ==============
 WINCONDITIONS
 ==============
 
-all APlayer on ATarget
-all BPlayer on BTarget
-
+all APlayer on ATarget or ABTarget
+all BPlayer on BTarget or ABTarget

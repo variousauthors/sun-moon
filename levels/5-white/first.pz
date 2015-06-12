@@ -1,0 +1,12 @@
+( White square rules )
+( it is open space for both characters )
+( both can enter it at the same time by freely moving onto it )
+( blocks can be pushed onto it but the white is gone forever )
+( if a block is pushed onto it while the other character is there, they are in the block )
+( targets in the white? both targets on the same square? if pushing a block onto a target the white is destroyed but target remains)
+
+B....
+.WWW.
+.....
+.WWW.
+..T..
