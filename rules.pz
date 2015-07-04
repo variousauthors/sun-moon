@@ -184,7 +184,8 @@ RULES
 ( players can push walls, and inactive players within )
 ( this group loops endlessly if your first move is to push a wall )
 rigid [ > Player | Wall ] -> [ > Player | > Wall ]
-+ rigid [ > Player | PlayerOff ] -> [ > Player | > PlayerOff ]
++ rigid [ > APlayer | AWall BPlayerOff ] -> [ > APlayer | > AWall > BPlayerOff ]
++ rigid [ > BPlayer | BWall APlayerOff ] -> [ > BPlayer | > BWall > APlayerOff ]
 
 ( after walls are moved, ensure either a floor or wall is in every cell )
 late [ APlayerOn ] [ Floor Wall ] -> [ APlayerOn ] [ Wall ]
@@ -196,5 +197,7 @@ late [ BPlayerOn ] [ no Floor no Wall no Black no White] -> [ BPlayerOn ] [ BFlo
 WINCONDITIONS
 ==============
 
-all APlayer on ATarget or ABTarget
-all BPlayer on BTarget or ABTarget
+all APlayer on ATarget
+(or ABTarget)
+all BPlayer on BTarget
+(or ABTarget)
